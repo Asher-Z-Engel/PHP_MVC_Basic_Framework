@@ -5,8 +5,10 @@
  * PHP v 8.0.11
  */
 
-// Require the Posts controller class
-// require '../App/Controllers/Posts.php';
+/**
+ * Twig
+ */
+require_once dirname(__DIR__) . '/vendor/autoload.php';
 
 /**
  * Autoloader
