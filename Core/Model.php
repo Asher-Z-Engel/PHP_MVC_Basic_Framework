@@ -22,19 +22,19 @@ abstract class Model
   {
     static $db = null;
 
-    // In order to use the framework to connect to the database, you need to create an App/Config.php file that has a class called Config, and sets the variables used here.
+    // In order to use the framework to connect to the database, you need to create an App/Env.php file that has a class called Env, and sets the variables used in the Config class.
     if ($db === null) {
       $host = Config::DB_HOST;
       $dbname = Config::DB_NAME;
       $username = Config::DB_USER;
       $password = Config::DB_PASSWORD;
 
-      try{
-        $db = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
-      } catch (PDOException $e) {
-        echo $e->getMessage();
-      }
+      $db = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
+
+      // Throw an Exception when an error occurs
+      $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+     
+      return $db;
     }
-    return $db;
   }
 }
